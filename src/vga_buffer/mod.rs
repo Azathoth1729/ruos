@@ -17,7 +17,10 @@ use spin::Mutex;
 use volatile::Volatile;
 
 use color::{Color, ColorCode};
-use core::fmt;
+use core::{
+    fmt,
+    ops::{Deref, DerefMut},
+};
 
 mod color;
 
@@ -38,6 +41,20 @@ const BUFFER_WIDTH: usize = 80;
 struct ScreenChar {
     ascii_character: u8,
     color_code: ColorCode,
+}
+
+impl Deref for ScreenChar {
+    type Target = ScreenChar;
+
+    fn deref(&self) -> &Self::Target {
+        self
+    }
+}
+
+impl DerefMut for ScreenChar {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        self
+    }
 }
 
 /// VGA Text Buffer
@@ -118,6 +135,7 @@ impl fmt::Write for Writer {
     }
 }
 
+/// Prints the given formatted string to the VGA text buffer through the global `WRITER` instance.
 #[doc(hidden)]
 pub fn _print(args: fmt::Arguments) {
     use core::fmt::Write;

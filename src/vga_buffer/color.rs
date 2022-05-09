@@ -1,3 +1,5 @@
+//! Byte representation of colors in VGA Text Mode
+
 /// Various color bit
 #[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
