@@ -10,14 +10,31 @@ bootloader = "0.9.22"
 volatile = "0.4.5"
 lazy_static = { version = "1.4.0", features = ["spin_no_std"] }
 spin = "0.9.3"
+x86_64 = "0.14.9"
+uart_16550 = "0.2.18"
 
 # the profile used for `cargo build`
-[profile.dev]
-panic = "abort" # disable stack unwinding on panic
-
+# [profile.dev]
+# panic = "abort" # disable stack unwinding on panic
 # the profile used for `cargo build --release`
-[profile.release]
-panic = "abort" # disable stack unwinding on panic
-
+# [profile.release]
+# panic = "abort" # disable stack unwinding on panic
 [build]
 target = "x86_64-rustos.json"
+
+[package.metadata.bootimage]
+test-args = [
+  "-device",
+  "isa-debug-exit,iobase=0xf4,iosize=0x04",
+  "-serial",
+  "stdio",
+  "-display",
+  "none"
+]
+
+test-success-exit-code = 33
+test-timeout = 300 # (in seconds)
+
+[[test]]
+name = "should_panic"
+harness = false
