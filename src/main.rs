@@ -3,15 +3,16 @@
 
 // test attribute
 #![feature(custom_test_frameworks)]
-#![test_runner(rust_os::test_runner)]
+#![test_runner(ruos::test_runner)]
 #![reexport_test_harness_main = "test_main"]
 
-use rust_os::println;
 use core::panic::PanicInfo;
+use ruos::println;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     println!("Hello World{}", "!");
+    println!("Weclome to rust-os!");
 
     #[cfg(test)]
     test_main();
@@ -30,5 +31,5 @@ fn panic(info: &PanicInfo) -> ! {
 #[cfg(test)]
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
-    rust_os::test_panic_handler(info)
+  ruos::test_panic_handler(info)
 }

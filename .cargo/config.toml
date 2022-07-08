@@ -7,10 +7,3 @@ target = "x86_64-rust-os.json"
 
 [target.'cfg(target_os = "none")']
 runner = "bootimage runner"
-# [package.metadata.bootimage]
-# build-command = ["build"]
-# run-command = [
-#   "qemu-system-x86_64",
-#   "-drive",
-#   "format=raw,file={target/x86_64-rust-os/debug/bootimage-rust-os.bin}"
-# ]
