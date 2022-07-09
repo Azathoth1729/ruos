@@ -12,6 +12,8 @@ lazy_static = { version = "1.4.0", features = ["spin_no_std"] }
 spin = "0.9.3"
 x86_64 = "0.14.9"
 uart_16550 = "0.2.18"
+pic8259 = "0.10"
+pc-keyboard= "0.5"
 
 # the profile used for `cargo build`
 # [profile.dev]

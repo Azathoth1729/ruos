@@ -1,6 +1,5 @@
-
 [toolchain]
 channel = "nightly"
-components = [ "rust-src" ]
-targets = [ "x86_64-rust-os.json" ]
+components = ["rust-src"]
+targets = ["x86_64-rust-os.json"]
 profile = "minimal"
